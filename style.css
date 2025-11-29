@@ -19,6 +19,9 @@ body {
     background: var(--dark);
     color: var(--light);
     line-height: 1.6;
+
+    /* TAMBAHAN → agar konten tidak ketutup navbar */
+    padding-top: 80px;
 }
 
 /* NAVBAR */
@@ -30,7 +33,7 @@ body {
     align-items: center;
     position: fixed;
     top: 0;
-    background: rgba(14, 14, 14, 0.8);
+    background: rgba(14, 14, 14, 0.85);
     backdrop-filter: blur(10px);
     z-index: 1000;
 }
@@ -163,13 +166,29 @@ footer {
     color: var(--gray);
 }
 
-/* RESPONSIVE */
+/* ===================== */
+/*      RESPONSIVE FIX   */
+/* ===================== */
 @media only screen and (max-width: 768px) {
-    .about-wrapper {
-        flex-direction: column;
-        text-align: center;
+
+    /* FIX NAVBAR HP */
+    .navbar {
+        padding: 15px 20px;
     }
 
+    .logo {
+        font-size: 18px;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    /* Hero center */
     .hero {
         padding: 20px;
         text-align: center;
@@ -177,7 +196,12 @@ footer {
     }
 
     .hero-text h1 {
-        font-size: 35px;
+        font-size: 34px;
+    }
+
+    .about-wrapper {
+        flex-direction: column;
+        text-align: center;
     }
 }
 
