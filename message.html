@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kirim Pesan - Gr3ynexWeb</title>
+  <link rel="stylesheet" href="message.css">
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+
+  <header class="header">
+    <nav class="navbar">
+      <div class="logo">Gr3ynexWeb</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html">Back</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <form id="myForm">
+      <h2>Send Message</h2>
+
+      <input type="text" name="nama" placeholder="Your Name" required>
+      <textarea name="pesan" placeholder="Your Massage" required></textarea>
+
+      <button type="submit">Send</button>
+    </form>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+         <div class="popup-content">
+              <p id="popup-message"></p>
+              <button onclick="closePopup()">OK</button>
+         </div>
+    </div>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxqA0FxIyKwJq_PARjyZFvWsIplyYMo_hGCnpk1OEq1k7dMfkdylMGlN2pYRODUNJNb2A/exec";
+    const form = document.getElementById("myForm");
+    const popup = document.getElementById("popup");
+    const popupMessage = document.getElementById("popup-message");
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+
+      const data = {
+        nama: form.nama.value,
+        pesan: form.pesan.value
+      };
+
+      fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(data)
+      })
+      .then(res => res.text())
+      .then(txt => showPopup("✅ Pesan berhasil dikirim!"))
+      .catch(err => showPopup("❌ Gagal mengirim pesan."));
+    });
+
+    function showPopup(message) {
+      popupMessage.innerText = message;
+      popup.style.display = "flex";
+    }
+
+    function closePopup() {
+      popup.style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
